@@ -4,7 +4,8 @@
         {
             "path": "pages/index/index",
             "style": {
-                "navigationBarTitleText": "超英首页"
+                "navigationBarTitleText": "NEXT超英预告",
+                "enablePullDownRefresh": true
             }
         },
         {
