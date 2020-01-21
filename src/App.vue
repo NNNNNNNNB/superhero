@@ -1,4 +1,5 @@
 <script>
+    import "@/static/css/global.css"
     // export default {
     //     onLaunch: function () {
     //         console.log('App Launch')
