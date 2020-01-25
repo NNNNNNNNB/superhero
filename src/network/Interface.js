@@ -30,4 +30,19 @@ export function getGuessLikeData() {
     return getData("/index/guessULike","POST")
 }
 
+//获取搜索预告数据
+export function getSearchNoticeData(keywords = "", page = "", pageSize = "") {
+    let param = "&keywords=" + keywords + "&page=" + page + "&pageSize=" + pageSize
+    return getData("/search/list","POST", param)
+}
+
+//获取预告片详情
+export function getTrailerData(TrailerId) {
+    return getData("/search/trailer/" + TrailerId,"POST")
+}
+
+//获取演员信息数据
+export function getPerformerData(TrailerId,index) {
+    return getData("/search/staff/" + TrailerId + "/"+ index, "POST")
+}
 

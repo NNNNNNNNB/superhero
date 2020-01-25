@@ -34,11 +34,18 @@
             return {
                 //黄星和绿星
                 yellowScore: 0,
-                grayScore: 5
+                grayScore: 5,
             }
         },
         created() {
             this.getScore()
+        },
+        watch: {
+            innerScore: function () {
+                this.$nextTick(()=>{
+                    this.getScore()
+                })
+            }
         },
         methods: {
             //获取星星数量
