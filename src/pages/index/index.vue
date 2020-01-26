@@ -20,10 +20,12 @@
             <scroll-view scroll-x class="page-block hot">
                 <view class="single-poster" v-for="(item,index) in hotSuperheroList" :key="index">
                     <view class="poster-wapper">
-                        <image :src="item.cover" class="poster"/>
-                        <view class="movie-name">
-                            {{item.name}}
+                        <view>
+                            <navigator :url="'../movie/movie?trailerId=' + item.id">
+                                <image :src="item.cover" class="poster"/>
+                            </navigator>
                         </view>
+                        <view class="movie-name">{{item.name}}</view>
                         <trailer-stars :innerScore="item.score" showInner/>
                     </view>
                 </view>
@@ -42,12 +44,14 @@
 
             <view class="hot-movie">
                 <video
+                    :id="item.id"
                     class="hot-movie-single"
                     v-for="item in hotTrailerList"
                     :key="item.id"
                     :src="item.trailer"
                     :poster="item.poster"
-                    controls>
+                    controls
+                    @play="meIsPlaing(item.id)">
                 </video>
             </view>
         </view>
@@ -115,6 +119,10 @@
             // 创建动画
             this.animation = uni.createAnimation();
         },
+        //页面隐藏
+        onHide() {
+            this.videoContext && this.videoContext.pause()
+        },
         onUnload() {
             //清除动画
             this.animation = {}
@@ -176,6 +184,15 @@
                     this.animationData = this.animation
                     this.animationDataArr[index] = this.animationData.export()
                 }.bind(this),500)
+            },
+            //预告视频播放被点击
+            meIsPlaing(videoId) {
+                this.videoContext = uni.createVideoContext(videoId)
+                for (let i = 0; i < this.hotTrailerList.length; i++) {
+                    if (this.hotTrailerList[i].id !== videoId) {
+                        uni.createVideoContext(this.hotTrailerList[i].id).pause()
+                    }
+                }
             }
         },
         components: {

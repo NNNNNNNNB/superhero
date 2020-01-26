@@ -2,13 +2,15 @@
     <view class="page">
         <!-- 预告视频 start -->
         <view class="player">
-            <video class="movie" :src="trailerInfo.trailer" :poster="trailerInfo.poster" controls></video>
+            <video id="myTrailer" class="movie" :src="trailerInfo.trailer" :poster="trailerInfo.poster" controls></video>
         </view>
         <!-- 预告视频 end -->
 
         <!-- 预告详情信息 start -->
         <view class="movie-info">
-            <image :src="trailerInfo.cover" class="cover"/>
+            <navigator :url="'../cover/cover?cover=' + trailerInfo.cover">
+                <image :src="trailerInfo.cover" class="cover"/>
+            </navigator>
 
             <view class="movie-desc">
                 <view class="title">{{trailerInfo.name}}</view>
@@ -37,7 +39,7 @@
             <view class="plots-title">剧情介绍</view>
             <view class="plots-desc">{{trailerInfo.plotDesc}}</view>
         </view>
-        <!-- 剧情介绍 start -->
+        <!-- 剧情介绍 end -->
 
         <!-- 演职人员 start -->
         <view class="acting-staff">
@@ -51,7 +53,7 @@
                 </view>
             </scroll-view>
         </view>
-        <!-- 演职人员 start -->
+        <!-- 演职人员 end -->
 
         <!-- 剧照 start -->
         <view class="acting-staff">
@@ -93,6 +95,27 @@
             this.getTrailerData(params.trailerId)
             this.getPerformerData(params.trailerId)
             // console.log(params.trailerId)
+        },
+        //页面初次渲染完成
+        onReady() {
+            //获取视频对象
+            this.videoContext = uni.createVideoContext('myTrailer')
+        },
+        //页面被隐藏
+        onHide() {
+            this.videoContext.pause()
+        },
+        //页面显示
+        onShow() {
+            this.videoContext && this.videoContext.play()
+        },
+        //分享
+        onShareAppMessage(res) {
+
+            return {
+                title: this.trailerInfo.name,
+                path: '/pages/movie/moive?trailerId=' + this.trailerInfo.id
+            }
         },
         methods: {
             //获取预告片详情数据
