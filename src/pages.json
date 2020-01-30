@@ -2,6 +2,27 @@
     "pages": [
         //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
         {
+            "path": "pages/index/index",
+            "style": {
+                "navigationBarTitleText": "NEXT超英预告",
+                "enablePullDownRefresh": true
+            }
+        },
+        {
+            "path": "pages/me/me",
+            "style": {
+                "navigationBarTitleText": "我的",
+                "navigationBarTextStyle": "white",
+                "navigationBarBackgroundColor": "#ffd655"
+            }
+        },
+        {
+            "path": "pages/registLogin/registLogin",
+            "style": {
+                "navigationBarTitleText": "用户注册"
+            }
+        },
+        {
             "path": "pages/search/search",
             "style": {
                 "navigationBarTitleText": "搜索预告片"
@@ -16,22 +37,49 @@
             }
         },
         {
-            "path": "pages/index/index",
-            "style": {
-                "navigationBarTitleText": "NEXT超英预告",
-                "enablePullDownRefresh": true
-            }
-        },
-        {
-            "path": "pages/me/me",
-            "style": {
-                "navigationBarTitleText": "个人"
-            }
-        },
-        {
             "path": "pages/movie/movie",
             "style": {
                 "navigationBarTitleText": "电影预告详情"
+            }
+        },
+        {
+            "path": "pages/meInfo/meInfo",
+            "style": {
+                "navigationBarTitleText": "我的信息",
+                "navigationBarTextStyle": "white",
+                "navigationBarBackgroundColor": "#ffd655"
+            }
+        },
+        {
+            "path": "pages/meFace/meFace",
+            "style": {
+                "navigationBarTitleText": "图片上传",
+                "navigationBarTextStyle": "white",
+                "navigationBarBackgroundColor": "#000000"
+            }
+        },
+        {
+            "path": "pages/meNickname/meNickname",
+            "style": {
+                "navigationBarTextStyle": "white",
+                "navigationBarTitleText": "修改昵称",
+                "navigationBarBackgroundColor": "#ffd655"
+            }
+        },
+        {
+            "path": "pages/meBirthday/meBirthday",
+            "style": {
+                "navigationBarTextStyle": "white",
+                "navigationBarTitleText": "修改生日",
+                "navigationBarBackgroundColor": "#ffd655"
+            }
+        },
+        {
+            "path": "pages/sex/sex",
+            "style": {
+                "navigationBarTextStyle": "white",
+                "navigationBarTitleText": "修改性别",
+                "navigationBarBackgroundColor": "#ffd655"
             }
         }
     ],

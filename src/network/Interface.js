@@ -2,11 +2,12 @@ const urlBase = "https://www.imovietrailer.com/superhero"
 const authentication = "280555437"
 
 //初始数据请求
-function getData(url, method,urlParam = "",data = {}) {
+function getData(url, method,urlParam = "",data = {},header = {}) {
     return uni.request({
         url: urlBase + url + "?qq=" + authentication + urlParam,
         method: method,
-        data: data
+        data: data,
+        header: header
     })
 }
 
@@ -45,4 +46,65 @@ export function getTrailerData(TrailerId) {
 export function getPerformerData(TrailerId,index) {
     return getData("/search/staff/" + TrailerId + "/"+ index, "POST")
 }
+
+//用户注册/登录
+export function setUserLogin(username,password) {
+    return getData("/user/registOrLogin","POST","",{
+        "username": username,
+        "password": password
+    })
+}
+
+//用户退出登录
+export function userLogout(userId) {
+    return getData("/user/logout","POST","&userId=" + userId)
+}
+
+//图片上传
+export function uploadImage(filePath,userId,userToken) {
+    return uni.uploadFile({
+        url: urlBase + "/user/uploadFace?qq=280555437&userId=" + userId,
+        filePath: filePath,
+        name: "file",
+        header: {
+            "headerUserId": userId,
+            "headerUserToken": userToken
+        }
+    })
+}
+
+//修改昵称
+export function setNickName(nickname,userId,userToken) {
+    return getData("/user/modifyUserinfo","POST","",{
+        "userId": userId,
+        "nickname": nickname
+    },{
+        "headerUserId": userId,
+        "headerUserToken": userToken
+    })
+}
+
+//修改生日
+export function setBirthday(birthday,userId,userToken) {
+    return getData("/user/modifyUserinfo","POST","",{
+        "userId": userId,
+        "birthday": birthday
+    },{
+        "headerUserId": userId,
+        "headerUserToken": userToken
+    })
+}
+
+//修改性别
+export function setSex(sex,userId,userToken) {
+    return getData("/user/modifyUserinfo","POST","",{
+        "userId": userId,
+        "sex": sex
+    },{
+        "headerUserId": userId,
+        "headerUserToken": userToken
+    })
+}
+
+
 

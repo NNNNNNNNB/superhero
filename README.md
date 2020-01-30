@@ -1,19 +1,18 @@
-# superhero
+# 超英影视预告小程序
 
-## Project setup
+## 相关介绍
+影视预告小程序，基于uni-app框架编写，只兼容小程序。
+## 编译命令
 ```
+加载项目所需插件
 npm install
+
+预览项目
+npm run dev:mp-weixin
+
+编译项目
+npm run build:mp-weixin
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 项目预览
+![](./README/首页.gif)![](./README/搜索.gif)![](./README/个人.gif)
